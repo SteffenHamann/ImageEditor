@@ -7,7 +7,10 @@ import javax.imageio.*;
 
 public class ImageEditorFrame extends JFrame{
 	ImageEditorPanel panel = new ImageEditorPanel();
-	public ImageEditorFrame(){
+
+	public ImageEditorFrame() {
+		createMenuBar();
+
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(400, 300);
 		setVisible(true);
@@ -25,5 +28,23 @@ public class ImageEditorFrame extends JFrame{
 		g.setColor(Color.yellow);
 		g.fillOval(10, 10, 380, 280);
 		panel.setImage(bufferedImage);
+	}
+
+	private void createMenuBar() {
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		JMenu menuFile = new JMenu("File");
+		menuBar.add(menuFile);
+		JMenuItem menuItemOpen = new JMenuItem("Open");
+		menuFile.add(menuItemOpen);
+		menuItemOpen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				onOpen();
+			}
+		});
+	}
+
+	private void onOpen() {
+		JOptionPane.showMessageDialog(this, "Open Selected");
 	}
 }
